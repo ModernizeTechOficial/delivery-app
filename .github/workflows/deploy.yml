@@ -53,8 +53,8 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SERVER_SSH_KEY_RSA }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
+          echo "${{ secrets.SERVER_SSH_KEY_RSA }}" > ~/.ssh/cyzor_food
+          chmod 600 ~/.ssh/cyzor_food
           ssh-keyscan -H github.com >> ~/.ssh/known_hosts
           ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
@@ -72,7 +72,7 @@ jobs:
       - name: Deploy Real
         run: |
           export TERM=xterm
-          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          ssh -i ~/.ssh/cyzor_food -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             set -e
             export TERM=xterm
             TARGET_DIR=/home/${{ github.event.inputs.subdomain }}/public_html
