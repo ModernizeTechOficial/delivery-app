@@ -87,7 +87,7 @@ jobs:
             fi
 
             # Clonar repositório privado usando a chave criada
-            export GIT_SSH_COMMAND='ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no'
+            export GIT_SSH_COMMAND='ssh -i ~/.ssh/cyzor_food -o StrictHostKeyChecking=no'
             git clone "${{ github.event.inputs.repository_url }}" .
             if [ ! -f .env.example ]; then
               echo "Erro: .env.example não encontrado!"
