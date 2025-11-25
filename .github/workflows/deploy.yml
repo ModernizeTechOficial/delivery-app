@@ -124,10 +124,13 @@ jobs:
             sudo find . -type f -exec chmod 644 {} \;
             sudo chmod -R 775 storage bootstrap/cache || true
 
-            # Instalação de dependências
+            # Instalação de dependências PHP
             composer install --no-interaction --optimize-autoloader
+
+            # Instalação de dependências JS e build
             if [ -f package.json ]; then
-              npm ci || true
+              npm install
+              npm run dev
             fi
 
             # Configurações Laravel
